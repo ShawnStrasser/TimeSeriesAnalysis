@@ -17,15 +17,21 @@ class MedianDecompose():
         self.ID_Name = ID_Name
         self.Value_Name = Value_Name
         self.return_data_type = return_data_type
+        
 
     def fit(self):
         '''Robust decomposition using median
         Input is Pandas DataFrame with three columns (DateTime, ID, and Value)
+        The input could also have DateTime and ID in the index.
         Returns DataFrame with seasonal compnents indexed by the DateTime and ID columns'''
         # Set the frequency for the rolling window to work.
         # The frequency is being set on the ID index rather than DateTime index
         # This makes makes no sense to me but the rolling calculations are working
-        df = self.df.set_index([self.DateTime_Name, self.ID_Name])
+        try:
+            df = self.df.set_index([self.DateTime_Name, self.ID_Name])
+        except Exception as e:
+            print(f'setting index failed, attempting to reset! error: {e}')
+            df = self.df.set_index([self.DateTime_Name, self.ID_Name])
         try:
             df.index.levels[1].freq = self.freq
             print(f'Frequency set at {df.index.levels[1].freq}')
