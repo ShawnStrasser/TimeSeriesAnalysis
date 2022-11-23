@@ -1,6 +1,6 @@
-# Median Time Series Decomposition
 ## Please see "Example.ipynb" in this repository for an example use case
 ## Contributions welcome!
+# Median Time Series Decomposition
 
 A Python class to perform robust time series decomposition on multiple time series at once. It decomposes the time series into the trend, daily, weekly, and residual components using medians (rather than means). Gaps in the time series are allowed.
 
@@ -21,3 +21,6 @@ Holidays and a yearly component will be included, might happen during Q2 2023, o
 A Python class to identify anomalies in multiple time series at once. Time series should be decomposed first (as above), and then anomaly classification should be done on the residuals. 
 
 Sometimes when you have a group of related time series, like vehicle travel times within the same city, they will all be impacted by certain factors outside the regular seasonal components. For example, a snow storm would cause travel times across the city to drop. When looking at individual road segments, this would result in anomalies showing up at all of them. To account for system/group-wide events like this, an optional grouping column can be included. The result that this has is that only time series timestamps that have statistically significant residual components AND SIGNIFICANTLY DEVIATE FROM THE REST OF THE GROUP will be classified as an anomaly.
+
+# Change Point Detection
+Code is still in progress, works but needs modifications before publishing
